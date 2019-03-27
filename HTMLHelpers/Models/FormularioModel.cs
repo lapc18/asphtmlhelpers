@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace HTMLHelpers.Models
@@ -16,7 +17,7 @@ namespace HTMLHelpers.Models
         public string Cedula { get; set; }
 
         [Required]
-        [Range(18,99, ErrorMessage = "Debe ingresar una edad verdadera.")]
+        [Range(16,99, ErrorMessage = "Su edad debe ser mayor que 15 y menor que 99.")]
         public int Edad { get; set; }
 
         [DataType(DataType.PhoneNumber)]
@@ -32,7 +33,7 @@ namespace HTMLHelpers.Models
         public string EstadoCivil { get; set; }
 
         [Required(ErrorMessage = "Este campo es obligario.")]
-        public string Hobbys { get; set; }
+        public List<HobbysModel> Hobbys { get; set; }
 
     }
 }

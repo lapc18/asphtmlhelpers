@@ -17,14 +17,29 @@ namespace HTMLHelpers.Controllers
 
         public IActionResult About()
         {
-            ViewData["Message"] = "Your application description page.";
-
             return View();
         }
 
         public IActionResult Contact()
         {
-            ViewData["Message"] = "Your contact page.";
+            return View();
+        }
+
+
+        [HttpGet]
+        public IActionResult Formulario()
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+        public IActionResult Formulario(FormularioModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                return View(model);
+            }
 
             return View();
         }
