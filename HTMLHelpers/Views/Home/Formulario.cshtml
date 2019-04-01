@@ -6,9 +6,11 @@
 }
 
 
-@using (Html.BeginForm("Formulario", "Home", FormMethod.Post))
+@using (Html.BeginForm("ResultSet", "Home", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
     <div class="form-group">
         @Html.LabelFor(x => x.Nombre) @Html.TextBoxFor(x => x.Nombre, new { @class = "form-control" })
@@ -29,13 +31,13 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(x => x.Genero) 
+        @Html.LabelFor(x => x.Genero)
 
         @Html.DropDownListFor(x => x.Genero,
-        new List<SelectListItem>{
-        new SelectListItem {Text = "Masculino", Value = "M"},
-        new SelectListItem{Text="Femenino", Value="F"}},
-        new { @class = "form-control" })
+             new List<SelectListItem>{
+new SelectListItem {Text = "Masculino", Value = "M"},
+new SelectListItem{Text="Femenino", Value="F"}},
+             new { @class = "form-control" })
         @Html.ValidationMessageFor(x => x.Genero, "", new { @class = "text-danger" })
         <br />
     </div>
@@ -51,7 +53,7 @@
         Casado @Html.RadioButtonFor(x => x.EstadoCivil, "Casado", new { @class = "radio" })<br />
         Viudo @Html.RadioButtonFor(x => x.EstadoCivil, "Viudo", new { @class = "radio" })<br />
         Union Libre @Html.RadioButtonFor(x => x.EstadoCivil, "Union Libre", new { @class = "radio" })<br />
-        @Html.ValidationMessageFor(x => x.EstadoCivil, "", new { @class = "text-danger" }) <br /> 
+        @Html.ValidationMessageFor(x => x.EstadoCivil, "", new { @class = "text-danger" }) <br />
     </div>
 
     <div class="form-group">
@@ -66,25 +68,26 @@
 
 
     <div class="form-group">
-       
+
         @Html.LabelFor(x => x.Hobbys)
 
         <div>
-            <br/>
-                @Html.CheckBox("WatchSeries")
-                @Html.Label("WatchSeries", "Ver Series", new { @class = "text-muted" })
             <br />
-                @Html.CheckBox("ListenMusic")
-                @Html.Label("ListenMusic", "Escuchar música", new { @class = "text-muted" })
+            @Html.CheckBox("WatchSeries")
+            @Html.Label("WatchSeries", "Ver Series", new { @class = "text-muted" })
             <br />
-                @Html.CheckBox("ToDance")
-                @Html.Label("ToDance", "Bailar", new { @class = "text" })
+            @Html.CheckBox("ListenMusic")
+            @Html.Label("ListenMusic", "Escuchar música", new { @class = "text-muted" })
             <br />
-                @Html.CheckBox("PlayVideos")
-                @Html.Label("PlayVideos", "Jugar videojuegos", new { @class = "text-muted" })
+            @Html.CheckBox("ToDance")
+            @Html.Label("ToDance", "Bailar", new { @class = "text-muted" })
             <br />
-         </div>
+            @Html.CheckBox("PlayVideos")
+            @Html.Label("PlayVideos", "Jugar videojuegos", new { @class = "text-muted" })
+            <br />
+        </div>
     </div>
 
     <button type="submit" class="btn btn-success btn-lg">Enviar</button>
+
 }

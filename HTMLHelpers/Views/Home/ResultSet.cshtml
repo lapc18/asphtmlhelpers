@@ -1,19 +1,106 @@
-﻿@model FormularioModel;
+﻿
+@model FormularioModel
 
 @{
-
+    ViewBag.Title = "Formulario";
 }
 
+<h1>Datos Registrados</h1>
 
-<div>
+<table cellpadding="5" width="300">
+    <tr>
+        <td>
+            @Html.Label("Cedula","Cedula", htmlAttributes: new { @class = "control-label col-md-2" })
+        </td>
+        <td>
+            @Html.Label(@Model.Cedula)
+        </td>
 
-    <div class="form-group">
+    </tr>
+    <tr>
+        <td>
+            @Html.Label("Nombre", "Nombre", htmlAttributes: new { @class = "control-label col-md-2" })
+        </td>
+        <td>
+            @Html.Label(@Model.Nombre)
+        </td>
 
-        @Html.LabelFor(x => x.Nombre);
+    </tr>
+    <tr>
+        <td>
+            @Html.Label("Apellido", "Apellido", htmlAttributes: new { @class = "control-label col-md-2" })
+        </td>
+        <td>
+            @Html.Label(@Model.Apellido)
+        </td>
 
-        <br/>
+    </tr>
+    <tr>
+        <td>
+            @Html.Label("Edad", "Edad", htmlAttributes: new { @class = "control-label col-md-2" })
+        </td>
+        <td>
+            @Html.Label(@Model.Edad.ToString())
+        </td>
 
-    </div>
-</div>
+    </tr>
+    <tr>
+        <td>
+            @Html.Label("Telefono", "Telefono", htmlAttributes: new { @class = "control-label col-md-2" })
+        </td>
+        <td>
+            @Html.Label(@Model.Telefono)
+        </td>
+
+    </tr>
+    <tr>
+        <td>
+            @Html.Label("Email", "Correo Electronico", htmlAttributes: new { @class = "control-label col-md-2" })
+        </td>
+        <td>
+            @Html.Label(@Model.Email)
+        </td>
+
+    </tr>
+    <tr>
+        <td>
+            @Html.Label("Genero", "Genero", htmlAttributes: new { @class = "control-label col-md-2" })
+        </td>
+        <td>
+            @Html.Label(@Model.Genero)
+        </td>
+
+    </tr>
+    <tr>
+        <td>
+            @Html.Label("EstadoCivil", "Estado civil", htmlAttributes: new { @class = "control-label col-md-2" })
+        </td>
+        <td>
+            @Html.Label(@Model.EstadoCivil)
+        </td>
+
+    </tr>
+
+    <tr>
+        <td>
+            @{
+                string hobbys = "";
+                for (int i = 0; i < Model.Hobbys.Count; i++)
+                {
+                    if (i == 0)
+                    {
+                        hobbys = hobbys + Model.Hobbys[i];
+                    }
+                    else
+                    {
+                        hobbys += ", " + Model.Hobbys[i];
+                    } 
+                }
+            }
+            <h5><b>Hobbys: </b>@hobbys</h5>
+
+        </td>
+    </tr>
 
 
+</table>

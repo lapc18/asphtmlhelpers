@@ -30,27 +30,55 @@ namespace HTMLHelpers.Controllers
         [HttpGet]
         public IActionResult Formulario()
         {
-            var Hobbys = new List<HobbysModel>{
-            new HobbysModel{ ID = 1, Hobby = "Leer", IsChecked = false},
-            new HobbysModel{ ID = 2, Hobby = "Ver series", IsChecked = false},
-            new HobbysModel{ ID = 3, Hobby = "Escuchar musica", IsChecked = false},
-            new HobbysModel{ ID = 4, Hobby = "Desarrollar software", IsChecked = false},
-            };
-            ViewData["list"] = Hobbys;
             return View();
         }
 
 
         [HttpPost]
-        public IActionResult Formulario(FormularioModel model)
+        public IActionResult ResultSet(string Cedula, string Nombre, string Apellido, int Edad, 
+            string Telefono, string Email, string EstadoCivil, string genero, bool WatchSeries, 
+            bool ListenMusic, bool ToDance, bool PlayVideos)
         {
-            if (ModelState.IsValid)
+            int n;
+            int.TryParse(Edad.ToString(), out n);
+
+            var data = new FormularioModel();
+
+
+            data.Cedula = Cedula;
+            data.Nombre = Nombre;
+            data.Apellido = Apellido;
+
+            data.Edad = n;
+            data.Telefono = Telefono ?? "Ninguno";
+            data.Email = Email ?? "Ninguno";
+            data.Genero = genero;
+            data.EstadoCivil = EstadoCivil;
+
+            if (WatchSeries)
             {
-                return View(model);
+                string a = "Ver series";
+                data.Hobbys.Add(a);
+            }
+            if (ToDance)
+            {
+                string x = "Bailar";
+                data.Hobbys.Add(x);
+            }
+            if (PlayVideos)
+            {
+                string y = "Video Juegos";
+                data.Hobbys.Add(y);
+            }
+            if (ListenMusic)
+            {
+                string z = "Escuchar musica";
+                data.Hobbys.Add(z);
             }
 
-            return View();
+            return View(data);
         }
+
 
         public IActionResult Privacy()
         {

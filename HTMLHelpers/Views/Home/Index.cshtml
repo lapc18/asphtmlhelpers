@@ -1,14 +1,17 @@
 ﻿@{
     ViewData["Title"] = "Pagina de Inicio";
+    ViewData["Nombre"] = "Luís Adolfo";
+    ViewData["Apellido"] = "Pimentel Colón";
+    ViewData["Descripcion"] = "2017-5180";
 }
 
 
-<div class="row center">
-
-    <div class="col-xs-12">
-        <div class="">
-            qloq wawawa
+<div class="jumbotron text-center">
+    <h1>@ViewData["Nombre"] @ViewData["Apellido"]</h1>
+    <p>@ViewData["Descripcion"]</p>
+    <div class="btn-group-justified" role="group">
+        <div class="btn-group" role="group">
+            <a href="Home/Formulario" class="btn btn-default">Ir al formulario</a>
         </div>
     </div>
-
 </div>
