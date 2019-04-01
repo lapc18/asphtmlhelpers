@@ -1,70 +1,89 @@
-﻿
-@model FormularioModel
-
+﻿@model FormularioModel
 
 
 @{
-    Model.Hobbys = new List<HobbysModel>
-{
-new HobbysModel{ ID = 1, Hobby = "Leer", IsChecked = false},
-new HobbysModel{ ID = 2, Hobby = "Ver series", IsChecked = false},
-new HobbysModel{ ID = 3, Hobby = "Escuchar musica", IsChecked = false},
-new HobbysModel{ ID = 4, Hobby = "Desarrollar software", IsChecked = false},
-};
+    var list = ViewData["list"];
 }
 
 
 @using (Html.BeginForm("Formulario", "Home", FormMethod.Post))
 {
+    @Html.AntiForgeryToken()
 
-    @Html.LabelFor(x => x.Nombre) @Html.TextBoxFor(x => x.Nombre, new { @class = "form-control" })
-    @Html.ValidationMessageFor(x => x.Nombre, "", new { @class = "text-danger" })
-    <br />
+    <div class="form-group">
+        @Html.LabelFor(x => x.Nombre) @Html.TextBoxFor(x => x.Nombre, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Nombre, "", new { @class = "text-danger" })
+        <br />
+    </div>
 
-    @Html.LabelFor(x => x.Apellido) @Html.TextBoxFor(x => x.Apellido, new { @class = "form-control" })
-    @Html.ValidationMessageFor(x => x.Apellido, "", new { @class = "text-danger" })
-    <br />
+    <div class="form-group">
+        @Html.LabelFor(x => x.Apellido) @Html.TextBoxFor(x => x.Apellido, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Apellido, "", new { @class = "text-danger" })
+        <br />
+    </div>
 
-    @Html.LabelFor(x => x.Cedula) @Html.TextBoxFor(x => x.Cedula, new { @class = "form-control" })
-    @Html.ValidationMessageFor(x => x.Cedula, "", new { @class = "text-danger" })
-    <br />
+    <div class="form-group">
+        @Html.LabelFor(x => x.Cedula) @Html.TextBoxFor(x => x.Cedula, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Cedula, "", new { @class = "text-danger" })
+        <br />
+    </div>
 
-    @Html.LabelFor(x => x.Genero) @Html.DropDownListFor(x => x.Genero,
-new List<SelectListItem>{
-new SelectListItem {Text = "Masculino", Value = "M"},
-new SelectListItem{Text="Femenino", Value="F"}},
-new { @class = "form-control" })
-    @Html.ValidationMessageFor(x => x.Genero, "", new { @class = "text-danger" })
-    <br />
+    <div class="form-group">
+        @Html.LabelFor(x => x.Genero) 
 
-    @Html.LabelFor(x => x.Edad) @Html.TextBoxFor(x => x.Edad, new { @class = "form-control" })
-    <br />
+        @Html.DropDownListFor(x => x.Genero,
+        new List<SelectListItem>{
+        new SelectListItem {Text = "Masculino", Value = "M"},
+        new SelectListItem{Text="Femenino", Value="F"}},
+        new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Genero, "", new { @class = "text-danger" })
+        <br />
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.Edad) @Html.TextBoxFor(x => x.Edad, new { @class = "form-control" })
+        <br />
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.EstadoCivil)
+        Soltero @Html.RadioButton("EstadoCivil", "Soltero")<br />
+        Casado @Html.RadioButtonFor(x => x.EstadoCivil, "Casado", new { @class = "radio" })<br />
+        Viudo @Html.RadioButtonFor(x => x.EstadoCivil, "Viudo", new { @class = "radio" })<br />
+        Union Libre @Html.RadioButtonFor(x => x.EstadoCivil, "Union Libre", new { @class = "radio" })<br />
+        @Html.ValidationMessageFor(x => x.EstadoCivil, "", new { @class = "text-danger" }) <br /> 
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.Telefono) @Html.TextBoxFor(x => x.Telefono, new { @class = "form-control" })
+        <br />
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.Email) @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
+        <br />
+    </div>
 
 
-    @Html.LabelFor(x => x.EstadoCivil)
-    @Html.RadioButtonFor(x => x.EstadoCivil, "Soltero", new { @class = "radio" })
-    @Html.RadioButtonFor(x => x.EstadoCivil, "Casado", new { @class = "radio" })
-    @Html.RadioButtonFor(x => x.EstadoCivil, "Viudo", new { @class = "radio" })
-    @Html.RadioButtonFor(x => x.EstadoCivil, "Union Libre", new { @class = "radio" })
-    @Html.ValidationMessageFor(x => x.EstadoCivil, "", new { @class = "text-danger" })
-    <br />
-
-    @Html.LabelFor(x => x.Telefono) @Html.TextBoxFor(x => x.Telefono, new { @class = "form-control" })
-    <br />
-
-    @Html.LabelFor(x => x.Email) @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
-    <br />
-
-    <div>
+    <div class="form-group">
+       
         @Html.LabelFor(x => x.Hobbys)
-        @for (int i = 0; i < Model.Hobbys.Count; i++)
-        {
-            @Html.HiddenFor(x => x.Hobbys[i].ID)
-            @Html.DisplayFor(x => x.Hobbys[i].Hobby, new { @class = "form-control" })
-            @Html.CheckBoxFor(x => x.Hobbys[i].IsChecked, new { @class = "checkbox" })
-            <br />
-        }
 
+        <div>
+            <br/>
+                @Html.CheckBox("WatchSeries")
+                @Html.Label("WatchSeries", "Ver Series", new { @class = "text-muted" })
+            <br />
+                @Html.CheckBox("ListenMusic")
+                @Html.Label("ListenMusic", "Escuchar música", new { @class = "text-muted" })
+            <br />
+                @Html.CheckBox("ToDance")
+                @Html.Label("ToDance", "Bailar", new { @class = "text" })
+            <br />
+                @Html.CheckBox("PlayVideos")
+                @Html.Label("PlayVideos", "Jugar videojuegos", new { @class = "text-muted" })
+            <br />
+         </div>
     </div>
 
     <button type="submit" class="btn btn-success btn-lg">Enviar</button>

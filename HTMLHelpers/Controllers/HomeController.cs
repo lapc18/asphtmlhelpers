@@ -11,7 +11,8 @@ namespace HTMLHelpers.Controllers
     public class HomeController : Controller
     {
         public IActionResult Index()
-        {
+        {   
+        
             return View();
         }
 
@@ -29,6 +30,13 @@ namespace HTMLHelpers.Controllers
         [HttpGet]
         public IActionResult Formulario()
         {
+            var Hobbys = new List<HobbysModel>{
+            new HobbysModel{ ID = 1, Hobby = "Leer", IsChecked = false},
+            new HobbysModel{ ID = 2, Hobby = "Ver series", IsChecked = false},
+            new HobbysModel{ ID = 3, Hobby = "Escuchar musica", IsChecked = false},
+            new HobbysModel{ ID = 4, Hobby = "Desarrollar software", IsChecked = false},
+            };
+            ViewData["list"] = Hobbys;
             return View();
         }
 

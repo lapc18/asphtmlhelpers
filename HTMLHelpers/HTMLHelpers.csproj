@@ -12,7 +12,4 @@
   <ItemGroup>
     <None Remove="Models\HobbysModel.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Models\HobbysModel.cs" />
-  </ItemGroup>
 </Project>
